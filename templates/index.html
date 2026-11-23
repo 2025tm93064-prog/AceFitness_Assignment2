@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACEest Fitness and Gym</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header><h1>ACEest Functional Fitness</h1></header>
+  <main>
+    <aside>
+      <h2>Client Profile</h2>
+      <form method="get">
+        <label for="program">Select Program</label>
+        <select id="program" name="program" required>
+          <option value="">Select a program</option>
+          {% for key, item in programs.items() %}
+          <option value="{{ key }}" {% if key == selected %}selected{% endif %}>{{ item.name }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Show plan</button>
+      </form>
+      <p class="metrics">CAPACITY: 150 Users<br>AREA: 10,000 sq ft<br>BREAK-EVEN: 250 Members</p>
+    </aside>
+    <section aria-label="Program details">
+      <article>
+        <h2>Weekly Workout Chart</h2>
+        {% if program %}
+        <p class="plan" style="color: {{ program.color }}">{{ program.workout }}</p>
+        {% else %}
+        <p>Select a profile to view workout</p>
+        {% endif %}
+      </article>
+      <article>
+        <h2>Daily Nutrition Plan (Tamil Nadu Context)</h2>
+        {% if program %}
+        <p class="plan">{{ program.diet }}</p>
+        {% else %}
+        <p>Select a profile to view diet</p>
+        {% endif %}
+      </article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acefitness
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: acefitness
+  template:
+    metadata:
+      labels:
+        app: acefitness
+    spec:
+      containers:
+        - name: web
+          image: acefitness:1.0.0
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
