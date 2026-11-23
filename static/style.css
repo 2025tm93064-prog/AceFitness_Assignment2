@@ -1,0 +1,19 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #1a1a1a; color: white; font-family: Arial, sans-serif; }
+header { background: #d4af37; color: black; padding: 1rem 2rem; }
+h1 { margin: 0; }
+h2 { color: #d4af37; font-size: 1.15rem; }
+main { display: flex; gap: 1rem; padding: 1.5rem; }
+aside, article { border: 1px solid #d4af37; padding: 1rem; }
+aside { flex: 0 0 16rem; }
+section { flex: 1; min-width: 0; }
+article + article { margin-top: 1rem; }
+label, select, button { display: block; margin: 0.6rem 0; }
+select, button { padding: 0.5rem; max-width: 100%; }
+button { background: #d4af37; border: 0; cursor: pointer; }
+.metrics { background: #333; line-height: 1.6; margin-top: 2rem; padding: 0.75rem; }
+.plan { white-space: pre-line; line-height: 1.5; }
+@media (max-width: 650px) {
+  main { flex-direction: column; }
+  aside { flex-basis: auto; }
+}
